@@ -5,6 +5,7 @@ import EmployeeList from '../components/EmployeeList';
 import CreateEmployee from '../components/CreateEmployee';
 import EditEmployee from '../components/EditEmployee';
 import axios from 'axios';
+import baseUrl from '../utils/baseUrl';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -28,7 +29,7 @@ const Dashboard = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get('http://localhost:3000/api/employees/fetchEmployees', {
+      const response = await axios.get(`${baseUrl}/api/employees/fetchEmployees`, {
         params: {
           page: currentPage,
           limit: employeesPerPage,
@@ -77,7 +78,7 @@ const Dashboard = () => {
         },
       };
       
-      await axios.delete(`http://localhost:3000/api/employees/${f_Id}`, config);
+      await axios.delete(`${baseUrl}/api/employees/${f_Id}`, config);
       
       setEmployees((prevEmployees) => prevEmployees.filter(employee => employee.f_Id !== f_Id));
     } catch (error) {

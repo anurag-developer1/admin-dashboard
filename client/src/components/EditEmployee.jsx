@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import baseUrl from '../utils/baseUrl';
 const EditEmployee = ({ employee, onCancel, onEmployeeUpdated }) => {
   const [formData, setFormData] = useState({ ...employee });
 
@@ -47,7 +47,7 @@ const EditEmployee = ({ employee, onCancel, onEmployeeUpdated }) => {
         }
       }
 
-      const response = await axios.put(`http://localhost:3000/api/employees/${employee.f_Id}`, formDataToSend, config);
+      const response = await axios.put(`${baseUrl}/api/employees/${employee.f_Id}`, formDataToSend, config);
       onEmployeeUpdated(response.data);
       onCancel();
     } catch (error) {

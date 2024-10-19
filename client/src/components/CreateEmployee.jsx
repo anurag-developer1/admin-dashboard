@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import baseUrl from '../utils/baseUrl';
 
 const CreateEmployee = ({ onCancel, onEmployeeCreated }) => {
   const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ const CreateEmployee = ({ onCancel, onEmployeeCreated }) => {
       },
     };
 
-    const emailCheckResponse = await axios.post('http://localhost:3000/api/checkEmail', {
+    const emailCheckResponse = await axios.post(`${baseUrl}/api/checkEmail`, {
       email: formData.f_Email,
     }, config);
 
@@ -80,7 +81,7 @@ const CreateEmployee = ({ onCancel, onEmployeeCreated }) => {
         }
       }
 
-      const response = await axios.post('http://localhost:3000/api/employees/createEmployee', formDataToSend, config);
+      const response = await axios.post(`${baseUrl}/api/employees/createEmployee`, formDataToSend, config);
       onEmployeeCreated(response.data);
       onCancel();
     } catch (error) {

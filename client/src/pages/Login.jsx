@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import baseUrl from '../utils/baseUrl';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -40,7 +41,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/login', {
+      const response = await axios.post(`${baseUrl}/api/auth/login`, {
         username,
         password
       });
